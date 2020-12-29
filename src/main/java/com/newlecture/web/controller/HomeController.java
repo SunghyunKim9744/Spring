@@ -18,8 +18,9 @@ Spring 5.x 최신 라이브러리를 이용하여 웹 개발을 하는 것이 �
  */
 
 
-//@RestController -- > RESTful API에 적합, 데이터를 전달할 때(뷰를 사용할 때)
+//@RestController -- > RESTful API에 적합, 데이터를 전달할 때
 @Controller
+@RequestMapping("/")
 public class HomeController {
    
 //   @RequestMapping("/admin/board/notice/list")
@@ -27,22 +28,18 @@ public class HomeController {
 //      return "list";
 //   } // 방정리를 위해 분리 >> admin/board : 패키지 / notice : 클래스 / list : 함수
    
-   @RequestMapping("/notice/list")
-   public String list() {
-      return "list";
-   }
-   
-   @RequestMapping("/index")
+ 
+   @RequestMapping("index")
    public String index() {
       return "hello";
    }
    
-   @RequestMapping("/aaa")
+   @RequestMapping("aaa")
    public String aaa() {
       return "aaa";
    }
    
-   @RequestMapping("/bbb")
+   @RequestMapping("bbb")
    public String bbb() {
       return "bbb";
    }
