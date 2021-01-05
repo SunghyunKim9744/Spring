@@ -1,17 +1,22 @@
 package com.newlecture.web.dao.spring;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 
-@Repository
+//@Repository
 public class SpringNoticeDao implements NoticeDao{
 
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+    // 3가지 방법
+	// JdbcTemplate - > MyBatis - > JPA
 	@Override
 	public int insert(Notice notice) {
 		// TODO Auto-generated method stub
@@ -50,9 +55,42 @@ public class SpringNoticeDao implements NoticeDao{
 
 	@Override
 	public List<Notice> getList() {
-		List<Notice> list = new ArrayList<>();
-		list.add(new Notice("제목이다","내용"));
-		return list;
+//		List<Notice> list = new ArrayList<>();
+//		list.add(new Notice("제목이다","내용"));
+		
+		String sql = "SELECT * FROM NOTICE";
+		
+//		RowMapper<Notice> rowMapper = new RowMapper<Notice>() {
+//
+//			@Override
+//			public Notice mapRow(ResultSet rs, int rowNum) throws SQLException {
+//				int id = rs.getInt("ID");
+//				String title = rs.getNString("TITLE");
+//				String writerId = rs.getNString("WRITER_ID");
+//				String content = rs.getNString("CONTENT");
+//				Date regdate = rs.getDate("REGDATE");
+//				int hit = rs.getInt("HIT");
+//				String files = rs.getNString("FILES");
+//
+//				Notice n = new Notice(id, title, writerId, content, regdate, hit, files);
+//
+//				return n;
+//			}
+//		};
+		
+		return jdbcTemplate.query(sql, (rs,row)->{
+			int id = rs.getInt("ID");
+			String title = rs.getNString("TITLE");
+			String writerId = rs.getNString("WRITER_ID");
+			String content = rs.getNString("CONTENT");
+			Date regdate = rs.getDate("REGDATE");
+			int hit = rs.getInt("HIT");
+			String files = rs.getNString("FILES");
+
+			Notice n = new Notice(id, title, writerId, content, regdate, hit, files);
+
+			return n;
+		});
 	}
 
 	@Override

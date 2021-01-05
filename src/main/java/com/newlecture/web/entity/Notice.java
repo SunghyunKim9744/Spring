@@ -12,7 +12,6 @@ public class Notice {
 	private String files;
 	
 	public Notice() {
-
 	}
 
 	public Notice(int id, String title, String writerId, String content, Date regdate, int hit, String files) {

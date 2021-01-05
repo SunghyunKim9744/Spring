@@ -29,6 +29,7 @@ public class NoticeService {
 	}
 	
 	public List<Notice> getList(){
+		System.out.println("서비스");
 		return noticeDao.getList();
 	}
 	public List<Notice> getList(int page, int size, String field, String query) {
@@ -37,13 +38,13 @@ public class NoticeService {
 		return noticeDao.getList(startIndex, endIndex, field, query);
 	}
 
-	public int hitUp(int id) {
-		int result =0;
-		Notice notice = noticeDao.get(id);
-		notice.setHit(notice.getHit()+1);
-		result = noticeDao.update(notice);
-		return result;
-	}
+//	public int hitUp(int id) {
+//		int result =0;
+//		Notice notice = noticeDao.get(id);
+//		notice.setHit(notice.getHit()+1);
+//		result = noticeDao.update(notice);
+//		return result;
+//	}
 	
 	public int deletaAll(int[] ids) {
 		
