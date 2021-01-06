@@ -10,8 +10,9 @@ public class Notice {
 	private Date regdate;
 	private int hit;
 	private String files;
-	
+
 	public Notice() {
+		
 	}
 
 	public Notice(int id, String title, String writerId, String content, Date regdate, int hit, String files) {

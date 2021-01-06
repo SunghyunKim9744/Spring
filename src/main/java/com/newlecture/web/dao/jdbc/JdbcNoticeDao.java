@@ -10,12 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
-
 
 public class JdbcNoticeDao implements NoticeDao {
 
@@ -136,7 +133,7 @@ public class JdbcNoticeDao implements NoticeDao {
 				String files = rs.getNString("FILES");
 
 				Notice n = new Notice(id, title, writerId, content, regdate, hit, files);
-
+			
 				list.add(n);
 			}
 

@@ -22,8 +22,8 @@ public class NoticeController {
 		
 //		NoticeService noticeService = new NoticeService();
 		List<Notice> list = noticeService.getList();
-		for(Notice n : list)
-			System.out.println(n);
+//		for(Notice n : list)
+//			System.out.println(n);
 		model.addAttribute("list", list);
 //		7번째 줄에 적힌 url로 맵핑이 됨.
 //		즉, /cutomer/board/notice/list.jsp
@@ -54,10 +54,10 @@ public class NoticeController {
 //			2. /customer/notice/3 - > 경로
 //			{} - > 값, @PathVariable - > 쿼리스트링이 아닌 경로의 값을 받기 위한 어노테이션 
 	@RequestMapping("{id}")
-	public String detail(Model model, @PathVariable String id) {
+	public String detail(Model model, @PathVariable Integer id) {
 
-		System.out.println(id);
-		Notice notice = noticeService.get(Integer.parseInt(id));
+		//System.out.println(id);
+		Notice notice = noticeService.get(id);
 		model.addAttribute("notice", notice);
 		return "customer.notice.detail";
 	}

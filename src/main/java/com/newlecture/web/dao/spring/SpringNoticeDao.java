@@ -77,7 +77,8 @@ public class SpringNoticeDao implements NoticeDao{
 //				return n;
 //			}
 //		};
-		
+
+
 		return jdbcTemplate.query(sql, (rs,row)->{
 			int id = rs.getInt("ID");
 			String title = rs.getNString("TITLE");
