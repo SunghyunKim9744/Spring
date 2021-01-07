@@ -29,7 +29,6 @@ public class NoticeService {
 	}
 	
 	public List<Notice> getList(){
-		System.out.println("서비스");
 		return noticeDao.getList();
 	}
 	public List<Notice> getList(int page, int size, String field, String query) {
@@ -80,9 +79,19 @@ public class NoticeService {
 	}
 
 
+	public List<NoticeView> getViewList() {
+		
+		return getViewList(1,10,"title","");
+	}
+	
 	public List<NoticeView> getViewList(int page,int size) {
+		
+		return getViewList(page, size,"title","");
+	}
+	
+	public List<NoticeView> getViewList(int page,int size, String title, String query) {
 		int startIndex = 1+(page-1)*10;
 		int endIndex = page*size;
-		return noticeDao.getViewList(startIndex, endIndex);
+		return noticeDao.getViewList(startIndex, endIndex,title,query);
 	}
 }

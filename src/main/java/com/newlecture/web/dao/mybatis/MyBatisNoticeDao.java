@@ -62,19 +62,19 @@ public class MyBatisNoticeDao implements NoticeDao{
 	@Override
 	public List<NoticeView> getViewList() {
 		// TODO Auto-generated method stub
-		return null;
+		return session.getMapper(NoticeDao.class).getViewList(1, 10, "title", "");
 	}
 
 	@Override
 	public List<NoticeView> getViewList(int startIndex, int endIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.getMapper(NoticeDao.class).getViewList(startIndex, endIndex, "title", "");
 	}
 
 	@Override
 	public List<NoticeView> getViewList(int startIndex, int endIndex, String field, String query) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.getMapper(NoticeDao.class).getViewList(startIndex, endIndex, field, query);
 	}
 
 	@Override

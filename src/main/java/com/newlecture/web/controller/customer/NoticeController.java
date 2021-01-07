@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
 
 @Controller
@@ -18,10 +20,11 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	@RequestMapping("list")
-	public String list(Model model) {
+	public String list(@RequestParam(name = "p", defaultValue="1") int page,
+			Model model) {
 		
 //		NoticeService noticeService = new NoticeService();
-		List<Notice> list = noticeService.getList();
+		List<NoticeView> list = noticeService.getViewList(page,10,"title","");
 //		for(Notice n : list)
 //			System.out.println(n);
 		model.addAttribute("list", list);

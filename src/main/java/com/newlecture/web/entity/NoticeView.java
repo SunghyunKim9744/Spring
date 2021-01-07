@@ -17,6 +17,24 @@ public class NoticeView extends Notice{
 		this.writerName = writerName;
 		this.cmtCount = cmtCount;
 	}
+	
+	
+
+	public String getWriterName() {
+		return writerName;
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
+	}
+
+	public int getCmtCount() {
+		return cmtCount;
+	}
+
+	public void setCmtCount(int cmtCount) {
+		this.cmtCount = cmtCount;
+	}
 
 	@Override
 	public String toString() {
