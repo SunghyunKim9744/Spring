@@ -16,6 +16,19 @@ public class MyBatisNoticeDao implements NoticeDao{
 	@Autowired
 	private SqlSession session;
 	
+	private NoticeDao mapper;
+	
+//	public MyBatisNoticeDao() {
+//		System.out.println("생성자1");
+//	}
+	@Autowired
+	public MyBatisNoticeDao(SqlSession session) {
+		//this.session = session;
+		//System.out.println("asdasd");
+		mapper = session.getMapper(NoticeDao.class);
+		
+	}
+	
 	@Override
 	public int insert(Notice notice) {
 //		NoticeDao mapper = session.getMapper(NoticeDao.class);
@@ -73,14 +86,20 @@ public class MyBatisNoticeDao implements NoticeDao{
 
 	@Override
 	public List<NoticeView> getViewList(int startIndex, int endIndex, String field, String query) {
-		// TODO Auto-generated method stub
-		return session.getMapper(NoticeDao.class).getViewList(startIndex, endIndex, field, query);
+//		System.out.println("aa");
+		return mapper.getViewList(startIndex, endIndex, field, query);
 	}
 
 	@Override
 	public Notice getLast() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getCount(String field, String query) {
+		
+		return mapper.getCount(field, query);
 	}
 
 }

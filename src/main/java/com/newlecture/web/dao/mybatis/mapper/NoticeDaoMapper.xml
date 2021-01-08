@@ -17,6 +17,13 @@
 		SELECT * FROM (
 			SELECT ROWNUM NUM, N.* FROM (
 				SELECT * FROM NOTICE_VIEW
+				<!-- 동적 쿼리 -->
+				<!-- WHERE -->
+				<where>
+					<if test="param3 != null">
+						 ${param3} LIKE '%${param4}%'
+					</if>
+				</where>
 					ORDER BY REGDATE DESC
 			) N
 		)
@@ -31,6 +38,15 @@
 			) N
 		)
 		WHERE NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		SELECT COUNT(ID) COUNT FROM NOTICE
+		
+			<if test="param1 != null">
+				WHERE ${param1} LIKE '%${param2}%'
+			</if>
+		
 	</select>
 
 

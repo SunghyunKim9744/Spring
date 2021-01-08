@@ -22,7 +22,7 @@
 						<label class="hidden">검색분류</label>
 						<select name="f">
 							<option  value="title">제목</option>
-							<option  value="writerId">작성자</option>
+							<option  value="writer_Id">작성자</option>
 						</select> 
 						<label class="hidden">검색어</label>
 						<input type="text" name="q" value=""/>
@@ -64,7 +64,7 @@
 			
 			<div class="indexer margin-top align-right">
 				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">1</span> / 1 pages</div>
+				<div><span class="text-orange text-strong">1</span> / ${count}pages</div>
 			</div>
 
 			<div class="margin-top align-center pager">	

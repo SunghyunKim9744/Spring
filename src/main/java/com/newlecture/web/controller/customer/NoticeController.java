@@ -20,11 +20,22 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	@RequestMapping("list")
-	public String list(@RequestParam(name = "p", defaultValue="1") int page,
+	public String list(
+//			@RequestParam 을 사용하면 무조건 값을 받아야함. 해결법 - > required = false - > null을 받을 수 있음. 
+			@RequestParam(name = "p", defaultValue="1") int page,
+			// 기본값 설정하기
+//			@RequestParam(name = "f", defaultValue="title") String field,
+//			@RequestParam(name = "q", defaultValue="") String query,
+//			// 기본값 안주고 MyBatis 에서 조건처리 동적 sql 만들기 
+//			name과 value는 같음.
+			@RequestParam(name = "f", required = false) String field,
+			@RequestParam(value = "q", required = false) String query,
 			Model model) {
 		
 //		NoticeService noticeService = new NoticeService();
-		List<NoticeView> list = noticeService.getViewList(page,10,"title","");
+		List<NoticeView> list = noticeService.getViewList(page,10,field,query);
+		int count = noticeService.getCount(field, query);
+		model.addAttribute("count", count);
 //		for(Notice n : list)
 //			System.out.println(n);
 		model.addAttribute("list", list);
