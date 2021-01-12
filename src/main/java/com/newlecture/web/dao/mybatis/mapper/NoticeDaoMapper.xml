@@ -4,6 +4,23 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
+
+<!-- MySql -->
+
+	<select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
+	      SELECT * FROM Notice
+	  </select>
+	   
+   <select id="getList" resultType="com.newlecture.web.entity.Notice">
+      SELECT * FROM Notice
+   </select>
+   
+   <select id="getCount" resultType="int">
+      SELECT count(id) FROM Notice
+   </select>
+
+<!-- Oracle -->
+<!-- 	
 	<resultMap id="noticeMap" type="com.newlecture.web.entity.Notice">
 		<result column="WRITER_ID" property="writerId" />
 	</resultMap>
@@ -17,8 +34,8 @@
 		SELECT * FROM (
 			SELECT ROWNUM NUM, N.* FROM (
 				SELECT * FROM NOTICE_VIEW
-				<!-- 동적 쿼리 -->
-				<!-- WHERE -->
+				동적 쿼리
+				WHERE
 				<where>
 					<if test="param3 != null">
 						 ${param3} LIKE '%${param4}%'
@@ -47,7 +64,8 @@
 				WHERE ${param1} LIKE '%${param2}%'
 			</if>
 		
-	</select>
+	</select> 
+-->
 
 
 </mapper>
