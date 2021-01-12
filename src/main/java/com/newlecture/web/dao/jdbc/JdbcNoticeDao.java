@@ -330,4 +330,10 @@ public class JdbcNoticeDao implements NoticeDao {
 		return n;
 	}
 
+	@Override
+	public int getCount(String field, String query) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

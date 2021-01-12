@@ -118,4 +118,10 @@ public class SpringNoticeDao implements NoticeDao{
 		return null;
 	}
 
+	@Override
+	public int getCount(String field, String query) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

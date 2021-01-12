@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="page" value = "${param.p}" />
+<c:if test="${empty param.p}">
+   <c:set var="page" value = "1" />
+</c:if>
 		<main class="main">
 			<h2 class="main title">공지사항</h2>
 			
@@ -13,7 +17,12 @@
 					<li>공지사항</li>
 				</ul>
 			</div>
-			
+			<%-- <c:set var="offset" value="${(page-1)%5}"/>
+			<c:set var = "startNum" value="${page-offset}"/>
+			<div>
+				offset : ${offset}<br>
+				startNum : ${startNum}
+			</div> --%>
 			<div class="search-form margin-top first align-right">
 				<h3 class="hidden">공지사항 검색폼</h3>
 				<form class="table-form">
@@ -62,9 +71,14 @@
 				</table>
 			</div>
 			
+			<%-- <c:set var="offset" value="${(page-1)%5}"/>
+			<c:set var = "startNum" value="${page-offset}"/> --%>
+	
+			<c:set var = "startNum" value="${page-(page-1)%5}"/>
+			
 			<div class="indexer margin-top align-right">
 				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">1</span> / ${count}pages</div>
+				<div><span class="text-orange text-strong">${page}</span> / ${pageCount}pages</div>
 			</div>
 
 			<div class="margin-top align-center pager">	
@@ -77,12 +91,16 @@
 	</div>
 	<ul class="-list- center">
 	<c:forEach var="i" begin="0" end="4" varStatus="st">
-		<li><a class="-text- orange bold" href="?p=${i+1}&t=&q=" >${i+1}</a></li>
+		<c:set var="current" value=""/>
+		<c:if test="${i+startNum == page}">
+			<c:set var="current" value="orange bold"/>
+		</c:if>
+		<li><a class="-text- ${current}" href="?p=${i+startNum}&t=&q=" >${i+startNum}</a></li>
 	</c:forEach>	
 	</ul>
 	<div>
 		
-		
+			<a class="btn btn-next" href="?p=6&t=&q=">다음</a>
 			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
 		
 	</div>

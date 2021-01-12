@@ -33,12 +33,15 @@ public class NoticeController {
 			Model model) {
 		
 //		NoticeService noticeService = new NoticeService();
-		List<NoticeView> list = noticeService.getViewList(page,10,field,query);
+		int size = 10;
+		List<NoticeView> list = noticeService.getViewList(page,size,field,query);
 		int count = noticeService.getCount(field, query);
-		model.addAttribute("count", count);
+		int pageCount = (int) Math.ceil(count/(float)size);
+		model.addAttribute("pageCount", pageCount);
 //		for(Notice n : list)
 //			System.out.println(n);
 		model.addAttribute("list", list);
+//		model.addAttribute("page",page);
 //		7번째 줄에 적힌 url로 맵핑이 됨.
 //		즉, /cutomer/board/notice/list.jsp
 //		return "list.jsp";
