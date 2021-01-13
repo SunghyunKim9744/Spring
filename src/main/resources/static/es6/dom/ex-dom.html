@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="ex-dom.js"></script>
+    <style>
+        header {
+            width: 100%;
+            height: 70px;
+            border-bottom: 1px solid black;
+            opacity: 0.5;
+            position: sticky;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>헤더입니다.</h1>
+    </header>
+
+    <section id="s13">
+        <style>
+            #s13 .container{
+                width:500px;
+                height:300px;
+                border : 1px solid gray;
+            }
+
+            #s13 .box{
+                width:100px;
+                height:100px;
+                background:blue;
+
+                position: absolute;
+            }
+        </style>
+        <h1>마우스 이벤트 : 드래그 드랍</h1>
+        <div class="container">
+            <div class="box"></div>
+        </div>
+    </section>
+    <hr>
+
+    <section id="s12">
+        <style>
+            #s12 input {
+                display: none;
+            }
+        </style>
+        <h1>트리거</h1>
+        <div>
+            <input type="file">
+            <span class="file-button">파일선택</span>
+        </div>
+    </section>
+    <hr>
+
+    <section id="s11">
+        <h1>Ajax 다루기</h1>
+
+        <div>
+            <input class="button1" type="button" value="로드">
+        </div>
+        <div>
+            <table class="table" border="1">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                        <th colspan="2">관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="pager">
+            <a href="?p=1">1</a>
+            <a href="?p=2">2</a>
+            <a href="?p=3">3</a>
+            <a href="?p=4">4</a>
+            <a href="?p=5">5</a>
+        </div>
+    </section>
+    <hr>
+
+    <section id="s10">
+        <h1>마우스 이벤트 객체 with Gallery</h1>
+        <style>
+            #s10 * {
+                box-sizing: border-box;
+            }
+
+            #s10 .cliper {
+                border: 1px solid black;
+                width: 700px;
+                overflow: hidden;
+            }
+
+            #s10 ul {
+                display: flex;
+                height: 100px;
+                padding: 0px;
+                transition: transform 500ms ease-in-out;
+            }
+
+            #s10 ul li {
+                list-style-type: none;
+                overflow: hidden;
+                flex-basis: 100px;
+                flex-shrink: 0;
+                opacity: 0.5;
+            }
+
+            #s10 ul li.current {
+                opacity: 1;
+                border: 1px solid green;
+            }
+
+            #s10 .show-room {
+                width: 700px;
+                height: 300px;
+                border: 1px solid gray;
+                padding: 20px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+        </style>
+
+        <div>
+            <a href="" class="prev-button">이전</a>
+            <a href="" class="next-button">다음</a>
+        </div>
+        <div class="show-room">
+            <img src="../images/img4.jpg">
+        </div>
+
+        <div class="cliper">
+            <ul>
+                <li><img src="../images/img1.jpg"></li>
+                <li><img src="../images/img2.jpg"></li>
+                <li><img src="../images/img3.jpg"></li>
+                <li><img src="../images/img4.jpg"></li>
+                <li><img src="../images/img5.jpg"></li>
+                <li><img src="../images/img1.jpg"></li>
+                <li><img src="../images/img2.jpg"></li>
+                <li><img src="../images/img3.jpg"></li>
+                <li><img src="../images/img4.jpg"></li>
+                <li><img src="../images/img5.jpg"></li>
+            </ul>
+        </div>
+    </section>
+    <hr>
+
+    <section id="s9-1">
+        <h1>노드 조작(좀 더 나은 방식 - > 최종 방식)</h1>
+        <style>
+            #s9-1 .container {
+                width: 700px;
+                height: 300px;
+                border: 1px solid gray;
+
+                display: flex;
+                align-content: flex-start;
+                flex-wrap: wrap;
+            }
+
+            #s9-1 .item {
+                border: 1px solid gray;
+                padding: 5px;
+            }
+
+            #s9-1 .button-list {
+                display: flex;
+            }
+
+            #s9-1 .button {
+                border: 1px solid #797979;
+                border-radius: 5px;
+                padding: 5px 10px;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+
+            #s9-1 .button:hover {
+                background-color: lightcoral;
+            }
+
+            #s9-1 .add-button {}
+        </style>
+        <div class="container">
+            <!-- 동적으로 만들기 -->
+            <!-- <span class="item">
+                <input type="checkbox">
+                <span>안녕1</span>
+            </span> -->
+        </div>
+
+        <div class="button-list">
+            <span class="button add-button">추가</span>
+            <span class="button del-button">삭제</span>
+            <span class="button replace-button">바꾸기</span>
+            <span class="button change-text-button">텍스트 바꾸기</span>
+        </div>
+    </section>
+    <hr>
+
+    <section id="s9">
+        <h1>노드 조작</h1>
+        <style>
+            #s9 .container {
+                width: 700px;
+                height: 300px;
+                border: 1px solid gray;
+            }
+
+            #s9 .button-list {
+                display: flex;
+            }
+
+            #s9 .button {
+                border: 1px solid #797979;
+                border-radius: 5px;
+                padding: 5px 10px;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+
+            #s9 .button:hover {
+                background-color: lightcoral;
+            }
+
+            #s9 .add-button {}
+        </style>
+        <div class="container">
+        </div>
+
+        <div class="button-list">
+            <span class="button add-button">추가</span>
+            <span class="button del-button">삭제</span>
+            <span class="button replace-button">바꾸기</span>
+        </div>
+
+    </section>
+    <hr>
+
+
+    <section id="s8-1">
+        <h1>Gallery 추가</h1>
+        <style>
+            #s8-1 * {
+                box-sizing: border-box;
+            }
+
+            #s8-1 .cliper {
+                border: 1px solid black;
+                width: 700px;
+                overflow: hidden;
+                --position: relative;
+            }
+
+            #s8-1 ul {
+                display: flex;
+                height: 100px;
+                padding: 0px;
+
+                /* position이 아닌 transform으로 포지션이 바뀜 */
+                --transform: translateX(100px);
+                transition: transform 500ms ease-in-out;
+            }
+
+            #s8-1 ul li {
+                list-style-type: none;
+                overflow: hidden;
+                flex-basis: 100px;
+                flex-shrink: 0;
+                /* 투명도 opcity 0 완전 투명 1 완전 불투명*/
+                opacity: 0.5;
+            }
+
+            #s8-1 ul li.current {
+                opacity: 1;
+                border: 1px solid green;
+            }
+
+            /* #s8-1 ul li img{
+                이미지를 크기에 맞추는 속성 object-fit
+                width:100%;
+                height:100%;
+                object-fit: fill;
+            } */
+
+            #s8-1 .show-room {
+                width: 700px;
+                height: 300px;
+                border: 1px solid gray;
+                padding: 20px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            /* 
+                align-items : 1줄(아이템 한개일 때) 박스에 설정
+                align-content : 2줄 이상 박스에 설정
+                align-self : 박스 안의 자식들에 설정
+            */
+
+            #s8-1 .show-room img {
+
+                --position: static;
+                /* 디폴트 값 - > 위치가 정해져 있음 - > 인라인이면 오른쪽, 블록이면 아래로 쌓임*/
+                --position: absolute;
+                /* 절대 위치 - > 문서가 기준 */
+                --position: relative;
+                /* 상대 위치 */
+                --position: fixed;
+                /* 화면이 기준 - > 화면에 고정 단, 가려지는 부분이 생김.*/
+                --position: sticky;
+                /* 화면에 고정, 단 가려지는 부분 안생김. top 0px 필수, 루트에서 사용*/
+
+                /* static은 안됨. */
+                --left: 0px;
+                --top: 0px;
+
+                --align-self: center;
+                /* height: 100%;
+                width : 100%;
+                height : calc(100% - 8px);
+                object-fit: contain; */
+                /* max-height: 300px; */
+            }
+        </style>
+        <div>
+            <input type="button" class="prev-button" value="prev">
+            <input type="button" class="next-button" value="next">
+        </div>
+        <div class="show-room">
+            <img src="../images/img4.jpg">
+        </div>
+
+        <div class="cliper">
+            <ul>
+                <li><img src="../images/img1.jpg"></li>
+                <li><img src="../images/img2.jpg"></li>
+                <li><img src="../images/img3.jpg"></li>
+                <li><img src="../images/img4.jpg"></li>
+                <li><img src="../images/img5.jpg"></li>
+                <li><img src="../images/img1.jpg"></li>
+                <li><img src="../images/img2.jpg"></li>
+                <li><img src="../images/img3.jpg"></li>
+                <li><img src="../images/img4.jpg"></li>
+                <li><img src="../images/img5.jpg"></li>
+            </ul>
+        </div>
+    </section>
+    <hr>
+
+    <section id="s8">
+        <h1>Gallery</h1>
+        <style>
+            #s8 ul {
+                display: flex;
+                height: 100px;
+                padding: 0px;
+            }
+
+
+
+            #s8 .show-room {
+                width: 700px;
+                height: 300px;
+                border: 1px solid gray;
+                padding: 20px 0px;
+
+            }
+        </style>
+        <div>
+            <input type="button" class="prev-button" value="prev">
+            <input type="button" class="next-button" value="next">
+        </div>
+        <div class="show-room">
+
+        </div>
+
+
+        <ul>
+            <li>1<img src></li>
+            <li>2<img src></li>
+            <li>3<img src></li>
+            <li>4<img src></li>
+            <li>5<img src></li>
+
+        </ul>
+
+    </section>
+    <hr>
+
+    <section id="s7">
+        <h1>Selectors API Lever1</h1>
+        <div>
+            <input type="button" class="prev-button" value="prev">
+            <input type="button" class="next-button" value="next">
+        </div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </section>
+    <hr>
+
+    <section id="s6">
+        <h1>노드 순회와 엘리먼트 노드 순회</h1>
+        <div>
+            <input type="button" class="prev-button" value="prev">
+            <input type="button" class="next-button" value="next">
+        </div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </section>
+    <hr>
+
+    <section id="s5">
+        <h1>location</h1>
+        <input type="text" class="url-input">
+        <input type="button" class="button1" value="Go">
+    </section>
+    <hr>
+
+    <section id="s4">
+        <h1>iframe 예제</h1>
+        <style>
+            #s4 iframe {
+                border: none;
+                width: 500px;
+                height: 300px;
+            }
+        </style>
+        <div>
+            <input class="btn1" type="button" value="click">
+            <!-- iframe - > innerframe - > ex-dom 안에다 다른 사이트 넣기  -->
+            <iframe src="ex-dom-s3zip.html"></iframe>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="s3">
+        <div>
+            <input class="zipcode-input" name="addr" />
+            <input class="search-button" type="button" value="주소검색" />
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="s2">
+        <div>
+            남은시간 <span class="count-span"></span>초
+            <input name="countdown-button" type="button" value="카운트 시작" />
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="s1">
+        <form action="">
+            <fieldset>
+                <legend>계산기 폼</legend>
+                <input type="text" id="x-input">
+                <input type="text" id="y-input">
+                <input type="button" id="add-button" value="계산">
+                <input type="text" id="result-input">
+            </fieldset>
+        </form>
+    </section>
+    <hr>
+
+
+
+</body>
+
+</html>

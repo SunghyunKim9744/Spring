@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+         // function 안에서의 var과 window는 다름, var->지역변수
+        // var f1 = function () {
+        //     window.a=3;
+        //     a = 1;
+        //     var a;
+        //     console.log(a);
+        // };
+        // f1();
+
+        // JS는 지역화가 불가능
+        // {
+        //     a=3;
+        // }
+    
+        // var a = 1;
+        // var a = 2;
+        // console.log(a);
+
+        // 클로저
+    
+        // var f1 = function () {
+        //     var text = "hi";
+        //     function f2() {
+        //         console.log(text);
+        //     }
+
+        //     return f2;
+            
+        // }
+        // console.log(f1.text);
+        // var c = f1();
+        // c();
+        // console.log(f1.text);
+        
+        // var x,y;
+        // x = prompt("x 값 입력",0);
+        // y = prompt("y 값 입력",0);
+        // console.log(parseInt(x)+parseInt(y));
+
+        // var n = parseInt("f");
+        // console.log(n);
+        // if(isNaN(n))
+        //     console.log("NaN출력");
+        // parseInt("13abc") == > 13만 나옴. 뒤의 숫자형식이 아닌것들은 안나옴
+
+        // var answer;
+        // answer = confirm("삭제하시겠습니까?");
+        // if(answer)
+        //     alert("삭제됨");
+
+        var add2 = function add() {
+            alert("hello");
+        }
+        add2();
+        add2.add;
+       
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

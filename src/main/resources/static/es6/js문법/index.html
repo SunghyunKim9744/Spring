@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    
+       var x; //= new Number(3)
+       console.log(x); // undefined도 형식임. - > booleadn,number,string,undefined,null
+       x = 3;
+       console.log(x);
+       x= null;
+       console.log(x);
+    
+       
+       var nums = new Array();
+       
+    //    nums[0] = 5;
+    //    console.log(nums[0]);
+
+    //    nums[1] = 10;
+    //    console.log(nums[1]);
+
+    //    nums[2] = 21;
+    //    console.log(nums[2]);
+
+    //    nums[3] = 10;
+
+    //    console.log(nums);
+    //    console.log(nums.length);
+    //    console.log(nums[0]);
+
+        // var nums = new Array();
+        // console.log(nums);
+
+            // undefined 3개짜리 배열 
+        // nums = new Array(3);
+        // console.log(nums);
+
+            // 값이 3,4,5인 3개 짜리 배열
+        // nums = new Array(3,4,5);
+        // console.log(nums);
+
+        // nums = new Array(5,10,21,"hello",new Array(3,4,5));
+        // console.log(typeof nums[3]);
+
+        // console.log(typeof nums[4]);
+        // console.log(nums[4][2]);
+
+        // var x;
+        // console.log(typeof x);
+
+        var x = undefined;
+        console.log(typeof x);
+
+        //  뒤에다 넣기.
+        var nums = new Array();
+        nums.push(3);
+        console.log(nums);
+        nums.push(4);
+        console.log(nums);
+        nums.push(5);
+        console.log(nums);
+        nums.push(3);
+        console.log(nums);
+        nums.push(5);
+        console.log(nums);
+        nums.push(3);
+        console.log(nums);
+        
+            // stack(뒤에서 빼기)
+        // var last = nums.pop();
+        // console.log(last);
+        // console.log(nums);
+        // var last = nums.pop();
+        // console.log(last);
+        // console.log(nums);
+        // var last = nums.pop();
+        // console.log(last);
+        // console.log(nums);
+
+            // 앞에다 넣기
+        nums.unshift(1);
+        console.log(nums);
+        nums.unshift(2);
+        console.log(nums);
+        nums.unshift(3);
+        console.log(nums);
+        nums.unshift(4);
+        console.log(nums);
+
+            // 앞에서 빼기
+        // var first = nums.shift();
+        // console.log(first);
+        // console.log(nums);
+        // var first = nums.shift();
+        // console.log(first);
+        // console.log(nums);
+        // var first = nums.shift();
+        // console.log(first);
+        // console.log(nums);
+
+        nums.push("hello");
+            // 인덱스 위치 찾기.
+        var pos = nums.indexOf("hello");
+        console.log(pos);
+
+            // 원하는 길이 만큼 배열 자르기 - > splice
+            // 0~7까지만 남기고 나머지 자르기.
+            
+        nums.splice(8);
+        console.log(nums);
+
+            //  splice(처음부터의 지우지않을 갯수,중간을 뛰어넘을 갯수)
+            // splice(3,2) - > 0~2까지 남기고 3,4를 뛰어넘고 5부터 남김
+        nums.splice(3,2);
+        console.log(nums);
+
+            // splice(인덱스,대체할 개수.,값) -> 인덱스에다 값을 삽입.
+            // splice(5,0,23) 삽입
+            // 인덱스 5에다 23 삽입.
+            //  splice(5,1,23) - > 인덱스 5번째에다 5번째 값 1개를 23이란 값으로 대체.
+            //  splice(3,3,23) - > 인덱스 3번째에다 3,4,5 3개를 1개의 23이란 값으로 대체
+        nums.splice(3,1,23);
+        console.log(nums);
+
+        // notice.id == notice["id"] --> .을 많이 사용 -- > 배열에서 [] 사용.
+        // js는 문자나 문자열을 구분하지 않음 - > "" or '' 사용
+
+       
+        // var notice = new Object();
+        // notice["id"] = 1;
+        // notice.title = "JS란 무엇인가?";
+        // notice["writerId"] = "newlec";
+        // notice.var = "var";
+       
+        var notice = [
+                        {id:1, title:"JS란 무엇인가?", writerId:"newlec", "var":"var"},
+                        {id:2, title:"어떻게", writerId:"2번사용자", "var":"var2"},
+                        {id:3, title:"사용?", writerId:"3번사용자", "var":"var3"},
+                        {id:4, title:"4번 제목", writerId:"4번사용자", "var":"var4"},
+                      ];
+
+        console.log(notice[2].title);
+
+        // 객체를 JSON 문자열로 만듬 - > JSON.stringify()
+        var json = JSON.stringify(notice);
+        console.log(json);
+
+        // var keys = new Array("id", "title", "writerId");
+        // var keys = ["id","title","writerId"];
+        // console.log(keys.length);
+        // for(var i=0; i<3; i++)
+        //     console.log(notice[keys[i]])
+
+
+        // evar - > 문자열로 된 코드를 실행할 수 있음.
+        var code = "var x=30;";
+
+        eval(code);
+        console.log(typeof code);
+        console.log(x);
+
+        var json = '{"kor" :30, "eng" : 50, "math" : 20}';
+        eval("var exam = "+json+";");
+
+        console.log(exam.math);
+
+        // JSON 문자열만을 위한 JSON 파서 -> 객체로 만들기 - > JSON.parse();
+
+        var json = '{"kor" :80, "eng" : 50, "math" : 20}';
+        var exam = JSON.parse(json);
+        console.log(exam.kor);
+
+        var name1 = "hong";
+        var name2 = new String("hong");
+
+        // JS에선 == 은 값 비교(묵시적 형변환 ex) var a=1; a=="1" <- 비교가능 1이 숫자로 변환), 
+        // 단 둘다 객체일 경우 참조를 비교(ex) C++) var a = new Integer(1); var b = new Integer(1) a==b 같지않음.
+        //  === 는 참조값 비교. 
+        console.log(name1 == name2);
+        console.log(name1 === name2);
+
+        var ar = ["철수","영희","맹구"];
+
+        // for in - > 키를 꺼냄
+        for(var i in ar)
+            console.log(ar[i]);
+
+        // for of  - > 값을 꺼냄 - > iterable 구현
+        for(var v of ar)
+            console.log(v);
+
+        var record = {"kor":30, "eng":40, "math":50};
+         // for in - > 키를 꺼냄
+        for(var k in record)
+            console.log(k);
+
+        // for of  - > 값을 꺼냄 - > iterable 구현
+        // for(var v of record)
+        //     console.log(v);
+
+
+        //  int add(int x, int y){                                                                function add( x, y){                    var add = function (x,y){
+        //     return x+y;          == >   var add = new Function("x, y", "return x+y");  == >        return x+y;          ==>                 return x+y;    == > 가장 많이 쓰는 방식 
+        //  }                                                                                     }                                        }
+
+            //  실제론 arguments[0] ... 이 전달됨. x,y는 개수를 의미하는게 아님 arguments[0] = > x라는 별칭, arguments[1] = > y라는 별칭으로 담음. 
+        var add = function (x,y){
+            return x+y+arguments[2];
+            // return arguments[0]+arguments[1];
+        }
+        console.log(add(3,4,5));
+
+        // window.a = 1;
+        var a=1;  // window.a = 1 과 같음. - > 전역 변수 - > 윈도우 객체의 속성. - > 모든 변수는 윈도우 객체의 속성 - > var a = 1 , window.a =1, a=1; 모두 같음. 단, function안에 들어갈 때(지역내)의 var는 다름. 
+        console.log(window.a);
+        // var a=1;
+
+        var f1 = function () {
+            return;
+        }
+        console.log(typeof f1());
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

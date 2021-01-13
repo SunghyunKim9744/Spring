@@ -5,67 +5,72 @@
 
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
 
-<!-- MySql -->
-
+	<!-- MySql -->
 	<select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
-	      SELECT * FROM Notice
-	  </select>
-	   
-   <select id="getList" resultType="com.newlecture.web.entity.Notice">
-      SELECT * FROM Notice
-   </select>
-   
-   <select id="getCount" resultType="int">
-      SELECT count(id) FROM Notice
-   </select>
-
-<!-- Oracle -->
-<!-- 	
-	<resultMap id="noticeMap" type="com.newlecture.web.entity.Notice">
-		<result column="WRITER_ID" property="writerId" />
-	</resultMap>
-	<resultMap id="noticeViewMap" type="com.newlecture.web.entity.NoticeView">
-		<result column="WRITER_ID" property="writerId" />
-		<result column="WRITER_NAME" property="writerName" />
-		<result column="CMT_COUNT" property="cmtCount" />
-	</resultMap>
-
-	<select id="getViewList" resultMap="noticeViewMap">
-		SELECT * FROM (
-			SELECT ROWNUM NUM, N.* FROM (
-				SELECT * FROM NOTICE_VIEW
-				동적 쿼리
-				WHERE
-				<where>
-					<if test="param3 != null">
-						 ${param3} LIKE '%${param4}%'
-					</if>
-				</where>
-					ORDER BY REGDATE DESC
-			) N
-		)
-		WHERE NUM BETWEEN #{param1} AND #{param2}
+		select * from NoticeView
+			<if test="param3 != null and param3 !=''"> 
+				where BINARY ${param3} like '%${param4}%' 
+			</if>
+		order by regdate desc
+		limit #{param2} offset #{param1}
 	</select>
 
-	<select id="getList" resultMap="noticeMap">
-		SELECT * FROM (
-			SELECT ROWNUM NUM, N.* FROM (
-				SELECT * FROM NOTICE
-					ORDER BY REGDATE DESC
-			) N
-		)
-		WHERE NUM BETWEEN #{param1} AND #{param2}
+	<select id="getList"
+		resultType="com.newlecture.web.entity.Notice">
+		select * from Notice
+			<if test="param3 != null and param3 !=''"> 
+				where BINARY ${param3} like '%${param4}%' 
+			</if>
+		order by regdate desc
+		limit #{param2} offset #{param1}
 	</select>
-	
+
 	<select id="getCount" resultType="int">
-		SELECT COUNT(ID) COUNT FROM NOTICE
+		SELECT count(id) FROM Notice
+			<if test="param1 != null and param1 !=''"> 
+				where BINARY ${param1} like '%${param2}%' 
+			</if>
+	</select>
+
+	<!-- Oracle -->
 		
-			<if test="param1 != null">
+		<!-- <resultMap id="noticeMap" type="com.newlecture.web.entity.Notice">
+			<result column="WRITER_ID" property="writerId" />
+		</resultMap>
+		<resultMap id="noticeViewMap" type="com.newlecture.web.entity.NoticeView">
+			<result column="WRITER_ID" property="writerId" />
+			<result column="WRITER_NAME" property="writerName" />
+			<result column="CMT_COUNT" property="cmtCount" />
+		</resultMap>
+		<select id="getViewList" resultMap="noticeViewMap">
+			SELECT * FROM 
+				( SELECT ROWNUM NUM, N.* FROM 
+					( SELECT * FROM NOTICE_VIEW 
+			// 동적 쿼리 WHERE
+					<where>
+						<if test="param3 != null"> 
+							${param3} LIKE '%${param4}%' 
+						</if>
+					</where>
+							ORDER BY REGDATE DESC
+							) N ) WHERE NUM BETWEEN #{param1} AND #{param2}
+		</select>
+		
+		<select id="getList" resultMap="noticeMap"> 
+			SELECT * FROM 
+			( SELECT ROWNUM NUM, N.* FROM 
+				( SELECT * FROM NOTICE ORDER BY REGDATE DESC ) N ) 
+					WHERE NUM BETWEEN #{param1} AND #{param2}
+		</select>
+		
+		<select id="getCount" resultType="int">
+			SELECT COUNT(ID) COUNT FROM 
+			NOTICE
+			<if test="param1 != null"> 
 				WHERE ${param1} LIKE '%${param2}%'
 			</if>
+		</select>   -->
 		
-	</select> 
--->
 
 
 </mapper>

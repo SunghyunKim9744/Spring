@@ -32,9 +32,14 @@ public class NoticeController {
 			@RequestParam(value = "q", required = false) String query,
 			Model model) {
 		
+		System.out.println(page);
 //		NoticeService noticeService = new NoticeService();
 		int size = 10;
 		List<NoticeView> list = noticeService.getViewList(page,size,field,query);
+		if(query != null && !query.equals(""))
+			for(NoticeView n : list) 
+				n.setTitle(n.getTitle().replace(query, "<span style=\"color:red;\">"+query+"</span>"));
+	
 		int count = noticeService.getCount(field, query);
 		int pageCount = (int) Math.ceil(count/(float)size);
 		model.addAttribute("pageCount", pageCount);

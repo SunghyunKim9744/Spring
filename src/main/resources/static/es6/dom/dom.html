@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="dom.js">
+        // function printResult(){
+        //     var x,y;
+        //     x = prompt("x 값 입력",0);
+        //     y = prompt("y 값 입력",0);
+        //     var btnPrint = document.getElementById("btn-print");
+        //     btnPrint.value=parseInt(x)+parseInt(y);
+        // }
+        
+        // <input onclick="printResult();" id="btnPrint"/>
+        // 내부적으로 18~19 처럼 됨.
+        // btnPrint.onclick = function(){
+        //     printResult();
+        // }
+        
+        // btnPrint.onclick = printResult;  -- > O
+        // btnPrint.onclick = printResult(); --> 함수를 호출하고 return 값이 담김. X
+       
+
+    //    js에선 변수명에 -를 쓸 수 없음 - > html의 id로 접근하면 안되는 이유
+    //    사용하려면 ["btn-print"].onclick = printResult;
+    //    function init(){
+    //     btn-print.onclick = printResult;
+    //    }
+
+    // function init(){
+    //     var btnPrint = document.getElementById("btn-print");
+    //     btnPrint.onclick = printResult;
+    //    }
+        
+    //    window.onload = init;
+
+    //   충돌의 위험을 위해 지역변수화함.
+    // window.onload =  function(){
+    //     var btnPrint = document.getElementById("btn-print");
+    //     btnPrint.onclick = printResult;
+
+    //     function printResult(){
+    //         var x,y;
+    //         x = prompt("x 값 입력",0);
+    //         y = prompt("y 값 입력",0);
+    //         var btnPrint = document.getElementById("btn-print");
+    //         btnPrint.value=parseInt(x)+parseInt(y);
+    //     }
+    // }
+    </script>
+    <script src ="test.js"></script>
+    
+</head>
+<body>
+    <h1 onclick="alert('안녕');">안녕하세요!</h1>
+    <!-- <script>
+        window.document.body.children[0].innerText="오호호호";
+    </script> -->
+
+    <!-- <input type="button" value="출력" id="btnPrint"/> -->
+    <input type="button" value="출력" id="btn-print"/>
+
+
+</body>
+</html> 

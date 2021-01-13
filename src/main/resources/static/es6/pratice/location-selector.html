@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src ="location-selector.js"></script>
+</head>
+<body>
+
+    <section id = "s3">
+        <h1>노드 조작 연습 - > 보다 나은 방식</h1>
+        <style>
+            #s3 .container{
+                width:1000px;
+                height:700px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                background-color: lightpink;
+            }
+
+            #s3>.container div{
+                width:100px;
+                height:100px;
+                border : 1px solid black;
+            }
+
+            #s3 .btn-list{
+                display: flex;
+            }
+
+            #s3 .btn-list input[type="button"]{
+                padding:5px;
+                margin :5px;
+                height: 50px;
+            }
+        </style>
+
+        <div class="container">
+           
+        </div>
+
+        <div class="btn-list">
+            <input type ="text" class="add-in-text" value="내용">
+            <input type ="button" class="add-button" value="추가">
+
+            <input type ="button" class="del-button" value="삭제">
+
+            <input type ="button" class="rep-button" value="바꾸기">
+        </div>
+    </section>
+    <hr>
+
+
+    <section id = "s2">
+        <h1>노드 조작 연습</h1>
+        <style>
+            #s2 .container{
+                width:1000px;
+                height:700px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: lightpink;
+            }
+
+            #s2>.container div{
+                width:100px;
+                height:100px;
+                background-color: lightblue;
+                border : 1px solid black;
+            }
+
+            #s2 .btn-list{
+                display: flex;
+            }
+
+            #s2 .btn-list input[type="button"]{
+                padding:5px;
+                margin :5px;
+                height: 50px;
+            }
+        </style>
+
+        <div class="container">
+            asdasd
+        </div>
+
+        <div class="btn-list">
+            <input type ="text" class="add-in-text" value="내용">
+            <input type ="button" class="add-button" value="추가">
+
+            <input type ="button" class="del-button" value="삭제">
+
+            <input type ="text" class="old-rep" value="몇 번째">
+            <input type ="text" class="new-rep" value="몇 번째">
+            <input type ="button" class="rep-button" value="바꾸기">
+        </div>
+    </section>
+    <hr>
+
+    <section id="s">
+        <h1>무슨 이미지인가요</h1>
+        <style>
+            #s ol{
+                display: flex;
+            }
+            iframe{
+                width : 1000px;
+                height : 500px;
+                border:1px solid gray;
+            }
+
+        </style>
+        
+       
+        <iframe src="sub-location-selector.html">
+
+        </iframe>
+        
+        <ol>
+            <li><img src = "../images/img1.jpg"></li>
+            <li><img src = "../images/img2.jpg"></li>
+            <li><img src = "../images/img3.jpg"></li>
+            <li><img src = "../images/img4.jpg"></li>
+            <li><img src = "../images/img5.jpg"></li>
+        </ol>
+        <div>
+            <input type="button" class="prev-button" value="prev">
+            <input type="button" class="next-button" value="next">
+            <input type="button" class="save-button" value="save">
+        </div>
+    </section>
+    <hr>
+</body>
+</html>
