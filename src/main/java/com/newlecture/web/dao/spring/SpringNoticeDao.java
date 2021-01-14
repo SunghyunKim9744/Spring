@@ -124,4 +124,16 @@ public class SpringNoticeDao implements NoticeDao{
 		return 0;
 	}
 
+	@Override
+	public Notice getPrev(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Notice getNext(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

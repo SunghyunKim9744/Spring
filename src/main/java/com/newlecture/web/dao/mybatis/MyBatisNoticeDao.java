@@ -145,7 +145,7 @@ public class MyBatisNoticeDao implements NoticeDao{
 	@Override
 	public Notice get(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.get(id);
 	}
 
 	@Override
@@ -194,6 +194,18 @@ public class MyBatisNoticeDao implements NoticeDao{
 	public int getCount(String field, String query) {
 		
 		return mapper.getCount(field, query);
+	}
+
+	@Override
+	public Notice getPrev(int id) {
+		// TODO Auto-generated method stub
+		return mapper.getPrev(id);
+	}
+
+	@Override
+	public Notice getNext(int id) {
+		// TODO Auto-generated method stub
+		return mapper.getNext(id);
 	}
 
 }

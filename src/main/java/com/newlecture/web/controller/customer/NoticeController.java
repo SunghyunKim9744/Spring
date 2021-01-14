@@ -18,7 +18,7 @@ import com.newlecture.web.service.NoticeService;
 public class NoticeController {
 
 	@Autowired
-	private NoticeService noticeService;
+	private NoticeService service;
 	@RequestMapping("list")
 	public String list(
 //			@RequestParam 을 사용하면 무조건 값을 받아야함. 해결법 - > required = false - > null을 받을 수 있음. 
@@ -32,15 +32,15 @@ public class NoticeController {
 			@RequestParam(value = "q", required = false) String query,
 			Model model) {
 		
-		System.out.println(page);
+		//System.out.println(page);
 //		NoticeService noticeService = new NoticeService();
 		int size = 10;
-		List<NoticeView> list = noticeService.getViewList(page,size,field,query);
+		List<NoticeView> list = service.getViewList(page,size,field,query);
 		if(query != null && !query.equals(""))
 			for(NoticeView n : list) 
 				n.setTitle(n.getTitle().replace(query, "<span style=\"color:red;\">"+query+"</span>"));
 	
-		int count = noticeService.getCount(field, query);
+		int count = service.getCount(field, query);
 		int pageCount = (int) Math.ceil(count/(float)size);
 		model.addAttribute("pageCount", pageCount);
 //		for(Notice n : list)
@@ -79,8 +79,13 @@ public class NoticeController {
 	public String detail(Model model, @PathVariable Integer id) {
 
 		//System.out.println(id);
-		Notice notice = noticeService.get(id);
+		Notice notice = service.get(id);
+		Notice prev = service.getPrev(id);
+		Notice next = service.getNext(id);
+		
 		model.addAttribute("notice", notice);
+		model.addAttribute("prev", prev);
+		model.addAttribute("next", next);
 		return "customer.notice.detail";
 	}
 

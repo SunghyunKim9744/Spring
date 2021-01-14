@@ -215,4 +215,16 @@ public class NoticeServiceImp implements NoticeService{
 		// TODO Auto-generated method stub
 		return noticeDao.getCount(field,query);
 	}
+
+	@Override
+	public Notice getPrev(int id) {
+		// TODO Auto-generated method stub
+		return noticeDao.getPrev(id);
+	}
+
+	@Override
+	public Notice getNext(int id) {
+		// TODO Auto-generated method stub
+		return noticeDao.getNext(id);
+	}
 }

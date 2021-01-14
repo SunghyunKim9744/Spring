@@ -66,5 +66,7 @@ public interface NoticeDao {
 	List<NoticeView> getViewList(int offset, int size, String field, String query);
 	Notice getLast();
 	int getCount(String field, String query);
+	Notice getPrev(int id);
+	Notice getNext(int id);
 	
 }

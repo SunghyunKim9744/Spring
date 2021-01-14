@@ -20,4 +20,8 @@ public interface NoticeService {
    int getLastId();
    
    int getCount(String field, String query);
+   
+   Notice getPrev(int id);
+   
+   Notice getNext(int id);
 }

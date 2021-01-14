@@ -10,12 +10,16 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String list() {
-		return "list.jsp";
+		return "admin.board.notice.list";
 	}
 	
 	@RequestMapping("reg")
 	public String reg() {
-		return "reg";
+		return "admin.board.notice.reg";
 	}
 
+	@RequestMapping("edit")
+	public String edit() {
+		return "admin.board.notice.edit";
+	}
 }

@@ -1,5 +1,10 @@
 package com.newlecture.web.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +37,21 @@ public class HomeController {
 
 	@PostMapping("upload")
 	@ResponseBody
-	public String upload(MultipartFile file) {
+	public String upload(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException  {
 		System.out.println("file uploaded");
+		System.out.println(file.getOriginalFilename());
+		String url = "/upload";
+		String realPath = request.getServletContext().getRealPath(url);
+		System.out.println(realPath);
+		  
+		File realPathFile = new File(realPath);
+		if(!realPathFile.exists())
+		     realPathFile.mkdirs();
+		  
+		String uploadedFilePath = realPath + File.separator + file.getOriginalFilename();
+		File uploadedFile = new File(uploadedFilePath);
+		file.transferTo(uploadedFile);
+	  
 		return "ok";
 	}
 
