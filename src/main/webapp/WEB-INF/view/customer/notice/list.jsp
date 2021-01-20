@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="page" value = "${param.p}" />
 <c:if test="${empty param.p}">
    <c:set var="page" value = "1" />
@@ -64,6 +65,14 @@
 						</td>
 						<td>${n.hit }</td>
 					</tr>
+					
+					<%-- <tr>
+						<td colspan="6">
+							<c:forEach var="cmt" items="${n.comments}">
+								${cmt.title}
+							</c:forEach>
+						</td>
+					</tr> --%>
 					</c:forEach>
 					
 					
@@ -123,6 +132,14 @@
 			</div>
 	
 		</div>
+		
 	</main>
+	
+<div id="root"></div>
+	
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel" src="/js/customer/notice/list.js"></script>
 
-<script src="/js/customer/notice/list.js"></script>
+

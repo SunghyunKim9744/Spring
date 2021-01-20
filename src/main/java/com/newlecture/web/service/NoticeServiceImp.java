@@ -122,6 +122,11 @@ public class NoticeServiceImp implements NoticeService{
 	@Autowired
 	private NoticeDao noticeDao;
 	
+//	@Autowired
+//	private CategoryDao categoryDao;
+//	
+//	@Autowired
+//	private CommentDao commentDao;
 //	public NoticeService() {
 //		
 //		noticeDao = new JdbcNoticeDao();
@@ -139,6 +144,11 @@ public class NoticeServiceImp implements NoticeService{
 	public List<Notice> getList(int page, int size, String field, String query) {
 		int offset = (page-1)*10;
 		return noticeDao.getList(offset, size, field, query);
+		
+//		List<Notice> list = noticeDao.getList();
+//		for(Notice n : list)
+//			n.setComments(commentDao.getListByNoticeId(n.getId()));
+//		return list;
 	}
 
 //	public int hitUp(int id) {
