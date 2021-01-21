@@ -11,6 +11,8 @@ public class Notice {
 	private Date regdate;
 	private int hit;
 	private String files;
+	
+	private boolean pub;
 	//private List<Comment> comments;
 
 	public Notice() {
@@ -97,6 +99,14 @@ public class Notice {
 //	public void setComments(List<Comment> comments) {
 //		this.comments = comments;
 //	}
+
+	public boolean getPub() {
+		return pub;
+	}
+
+	public void setPub(boolean pub) {
+		this.pub = pub;
+	}
 
 	@Override
 	public String toString() {

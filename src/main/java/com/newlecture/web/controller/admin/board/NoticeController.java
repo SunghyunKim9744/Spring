@@ -1,14 +1,18 @@
 package com.newlecture.web.controller.admin.board;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
 
 //@RestController -- > RESTful API에 적합, 데이터를 전달할 때
@@ -18,9 +22,26 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService service;
+	
 	@RequestMapping("list")
-	public String list() {
+	public String list(Model model) {
+		
+		List<NoticeView> list = service.getViewList(1, 10,"title", "");
+		model.addAttribute("list",list);
 		return "admin.board.notice.list";
+	}
+	
+	@GetMapping("{id}")
+	public String detail(@PathVariable("id") int id,Model model) {
+		Notice notice = service.get(id);
+		Notice prev = service.getPrev(id);
+		Notice next = service.getNext(id);
+		
+		model.addAttribute("n", notice);
+		model.addAttribute("prev", prev);
+		model.addAttribute("next", next);
+		
+		return "admin.board.notice.detail";
 	}
 	
 //	reg 가 get요청으로 올 때
@@ -41,8 +62,32 @@ public class NoticeController {
 		return "redirect:list";
 	}
 
-	@RequestMapping("edit")
-	public String edit() {
+	@GetMapping("{id}/edit")
+	public String edit(@PathVariable("id") int id,Model model) {
+		
+		Notice notice = service.get(id);
+		
+		model.addAttribute("n", notice);
+	
 		return "admin.board.notice.edit";
+	}
+	
+	@PostMapping("{id}/edit")
+	public String edit(Notice notice) {
+		
+		// 아래와 같이 하면 안됨. 입력받은 멤버들이 아닌 것들이 널로 업데이트 되기 때문에.
+		//service.update(notice);
+		
+		int id = notice.getId();
+		String title = notice.getTitle();
+		String content = notice.getContent();
+		
+		Notice origin = service.get(id);
+		origin.setTitle(title);
+		origin.setContent(content);
+		
+		service.update(origin);
+		
+		return "redirect:../"+notice.getId();
 	}
 }
