@@ -139,7 +139,7 @@ public class MyBatisNoticeDao implements NoticeDao{
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return mapper.delete(id);
 	}
 
 	@Override
@@ -206,6 +206,12 @@ public class MyBatisNoticeDao implements NoticeDao{
 	public Notice getNext(int id) {
 		// TODO Auto-generated method stub
 		return mapper.getNext(id);
+	}
+
+	@Override
+	public int deleteAll(int[] ids) {
+		System.out.println("??asdasd");
+		return mapper.deleteAll(ids);
 	}
 
 }

@@ -68,5 +68,6 @@ public interface NoticeDao {
 	int getCount(String field, String query);
 	Notice getPrev(int id);
 	Notice getNext(int id);
+	int deleteAll(int[] ids);
 	
 }

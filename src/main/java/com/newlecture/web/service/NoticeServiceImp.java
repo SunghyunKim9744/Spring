@@ -159,15 +159,16 @@ public class NoticeServiceImp implements NoticeService{
 //		return result;
 //	}
 	
-	public int deletaAll(int[] ids) {
+	public int deleteAll(int[] ids) {
 		
-		int result = 0;
-		for(int i=0; i<ids.length; i++) {
-			int id= ids[i];
-			result += noticeDao.delete(id);
-		}
-			
-		return result;
+//		int result = 0;
+//		for(int i=0; i<ids.length; i++) {
+//			int id= ids[i];
+//			result += noticeDao.delete(id);
+//		}
+//		return result;
+		System.out.println("ids");
+		return noticeDao.deleteAll(ids);
 	}
 	
 	
@@ -208,11 +209,6 @@ public class NoticeServiceImp implements NoticeService{
 		return noticeDao.getViewList(offset, size,title,query);
 	}
 
-	@Override
-	public int deleteAll(int[] ids) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int hitUp(int id) {

@@ -31,6 +31,7 @@
 					</form>
 				</div>
 
+<form action="aa" method="post">
 				<div class="notice margin-top">
 					<h3 class="hidden">공지사항 목록</h3>
 					<table class="table">
@@ -56,8 +57,8 @@
                          <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd"/>	
                         </td>
                         <td>${n.hit }</td>
-                        <td><input type="checkbox" name="open"></td>
-                        <td><input type="checkbox" name="del"></td>
+                        <td><input ${n.pub?'checked':''} type="checkbox" name="open"></td>
+                        <td><input type="checkbox" name="del" value="${n.id}"></td>
                      </tr>
                   </c:forEach>
 
@@ -72,11 +73,11 @@
 				</div>
 
 				<div class="text-align-right margin-top">
-					<input type="submit" class="btn-text btn-default" value="일괄공개">
-					<input type="submit" class="btn-text btn-default" value="일괄삭제">
+					<input type="submit" class="btn-text btn-default" name="action" value="일괄공개">
+					<input type="submit" class="btn-text btn-default" name="action" value="일괄삭제">
 					<a class="btn-text btn-default" href="reg">글쓰기</a>				
 				</div>
-
+</form>
 				<div class="margin-top align-center pager">
 
 					<div>

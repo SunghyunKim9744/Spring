@@ -90,4 +90,20 @@ public class NoticeController {
 		
 		return "redirect:../"+notice.getId();
 	}
+	
+	@GetMapping("{id}/del")
+	public String delete(@PathVariable("id") int id) {
+		
+		service.delete(id);
+		return "redirect:../list";
+	}
+	
+	@PostMapping("aa")
+	public String aa(String action, int[] del) {
+		if(action.equals("일괄삭제")) {
+			service.deleteAll(del);
+		}
+			
+		return "redirect:list";
+	}
 }

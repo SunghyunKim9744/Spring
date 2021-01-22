@@ -52,7 +52,7 @@
                 <div class="margin-top text-align-center">
                     <a class="btn-text btn-cancel" href="list">목록</a>
                     <a class="btn-text btn-default" href="${n.id}/edit">수정</a>
-                    <a class="btn-text btn-default" href="${n.id}/del">삭제</a>
+                    <a class="btn-text btn-default btn-del" href="${n.id}/del">삭제</a>
                 </div>
 
                 <div class="margin-top">
@@ -89,3 +89,16 @@
                     </table>
                 </div>
             </main>
+            
+            
+<script>
+	window.addEventListener("load",()=>{
+	
+		let delButton = document.querySelector(".btn-del");
+		delButton.onclick=(e)=>{
+			let result = confirm("삭제하시겠습니까?");
+			if(!result)
+				e.preventDefault();
+		};
+	});
+</script>

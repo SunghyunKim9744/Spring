@@ -348,4 +348,10 @@ public class JdbcNoticeDao implements NoticeDao {
 		return null;
 	}
 
+	@Override
+	public int deleteAll(int[] ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
