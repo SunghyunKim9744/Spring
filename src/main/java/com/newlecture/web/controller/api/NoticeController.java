@@ -1,6 +1,8 @@
 package com.newlecture.web.controller.api;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +21,21 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@RequestMapping("list")
-	public List<NoticeView> list(
+	public Map<String,Object> list(
 			@RequestParam(name = "p", defaultValue="1") int page,
 			@RequestParam(name = "f", required = false) String field,
 			@RequestParam(value = "q", required = false) String query) {
 		
 		int size=10;
+		
+		
 		List<NoticeView> list = service.getViewList(page,size,field,query);
-		return list;
+		int count = service.getCount(field, query);
+		Map<String,Object> dto = new HashMap<>();
+		dto.put("list", list);
+		//System.out.println(dto.get("list"));
+		dto.put("count",count);
+		return dto;
 	}
 
 }

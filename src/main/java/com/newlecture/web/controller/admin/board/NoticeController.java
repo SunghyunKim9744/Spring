@@ -1,7 +1,9 @@
 package com.newlecture.web.controller.admin.board;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
@@ -23,12 +27,37 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 	
-	@RequestMapping("list")
+	@GetMapping("list")
 	public String list(Model model) {
 		
 		List<NoticeView> list = service.getViewList(1, 10,"title", "");
 		model.addAttribute("list",list);
+		
+		Map<Integer,Boolean> pubState = new HashMap<>();
+		for(NoticeView nv : list) {
+			pubState.put(nv.getId(),nv.getPub());
+		}
+		//System.out.println(pubState);
+		String jsonState = new Gson().toJson(pubState);
+		//System.out.println(jsonState);
+		model.addAttribute("pubStatus",jsonState);
 		return "admin.board.notice.list";
+	}
+	
+	@PostMapping("list")
+	public String aa(String action, int[] del, @RequestParam("old-state") String oldState) {
+		
+		System.out.println(oldState);
+		if(action.equals("일괄삭제")) 
+			service.deleteAll(del);
+		else if(action.equals("일괄공개")) {
+			Map<String,Boolean> map = new Gson().fromJson(oldState,Map.class);
+			map.forEach((k,v)->{
+				System.out.println("k : "+k+", v : "+v);
+			});
+		};
+			
+		return "redirect:list";
 	}
 	
 	@GetMapping("{id}")
@@ -98,12 +127,5 @@ public class NoticeController {
 		return "redirect:../list";
 	}
 	
-	@PostMapping("aa")
-	public String aa(String action, int[] del) {
-		if(action.equals("일괄삭제")) {
-			service.deleteAll(del);
-		}
-			
-		return "redirect:list";
-	}
+
 }

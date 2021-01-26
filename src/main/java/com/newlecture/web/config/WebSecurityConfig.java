@@ -3,11 +3,13 @@ package com.newlecture.web.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -15,6 +17,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	// 데이터베이스에서 갖고오기.
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private AuthenticationSuccessHandler successHandler;
+	
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+		return new NewlecAuthenticationSuccessHandler();
+	}
 	
 //	권한 따라 접근할 수 있는 경로 설정
 //	1. permitAll() ==> 누구라도 올 수 있는 페이지
@@ -32,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.loginPage("/member/login")
 				.loginProcessingUrl("/member/login") // Spring이 처리하는 로그인 url제공
 				.defaultSuccessUrl("/") 			// 직접 로그인 페이지에서 로그인할 경우 가야할 경로 지정
+				.successHandler(successHandler) 				// 로그인 성공시 해야할 로직(ex -> 정보갖고오기)
 				.and()
 			.logout()
 				.logoutUrl("/member/logout") 		// Spring이 처리하는 logout url
@@ -40,6 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.and()
 			.csrf() 	// csrf 허용하기.
 				.disable();
+		
+		
 	}
 	
 //	사용자 설정하기

@@ -31,7 +31,7 @@
 					</form>
 				</div>
 
-<form action="aa" method="post">
+<form action="list" method="post">
 				<div class="notice margin-top">
 					<h3 class="hidden">공지사항 목록</h3>
 					<table class="table">
@@ -72,7 +72,9 @@
 					<div><span class="text-orange text-strong">1</span> / 1 pages</div>
 				</div>
 
+				${pubStatus}
 				<div class="text-align-right margin-top">
+					<input type="text" name="old-state" value='${pubStatus}' />
 					<input type="submit" class="btn-text btn-default" name="action" value="일괄공개">
 					<input type="submit" class="btn-text btn-default" name="action" value="일괄삭제">
 					<a class="btn-text btn-default" href="reg">글쓰기</a>				

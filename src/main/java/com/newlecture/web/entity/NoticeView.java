@@ -36,11 +36,11 @@ public class NoticeView extends Notice{
 		this.cmtCount = cmtCount;
 	}
 
-	@Override
-	public String toString() {
-		return "NoticeView [writerName=" + writerName + ", cmtCount=" + cmtCount + "]";
-	}
-	
+//	@Override
+//	public String toString() {
+//		return "NoticeView [writerName=" + writerName + ", cmtCount=" + cmtCount + "]";
+//	}
+//	
 	
 
 
