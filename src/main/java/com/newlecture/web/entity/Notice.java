@@ -19,6 +19,12 @@ public class Notice {
 		
 	}
 
+	public Notice(String title, String writerId, String content) {
+	      this.title = title;
+	      this.writerId = writerId;
+	      this.content = content;
+	}
+	
 	public Notice(int id, String title, String writerId, String content, Date regdate, int hit, String files) {
 		this.id = id;
 		this.title = title;

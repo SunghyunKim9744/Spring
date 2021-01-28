@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
@@ -19,6 +21,18 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService service;
+	
+	@GetMapping("atom")
+	@ResponseBody
+	public String atom() {
+		Notice notice = new Notice("보이지마라 트랙잭션","newlec","깨졌네 ㅠ");
+		service.insert(notice);
+		
+		notice.setWriterId("없는사람임");
+		service.insert(notice);
+		return null;
+		
+	}
 	@RequestMapping("list")
 	public String list(
 //			@RequestParam 을 사용하면 무조건 값을 받아야함. 해결법 - > required = false - > null을 받을 수 있음. 

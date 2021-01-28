@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private DataSource dataSource;
 	
 	@Autowired
-	private AuthenticationSuccessHandler successHandler;
+	private AuthenticationSuccessHandler successHandle;
 	
 	@Bean
 	public AuthenticationSuccessHandler successHandler() {
@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.loginPage("/member/login")
 				.loginProcessingUrl("/member/login") // Spring이 처리하는 로그인 url제공
 				.defaultSuccessUrl("/") 			// 직접 로그인 페이지에서 로그인할 경우 가야할 경로 지정
-				.successHandler(successHandler) 				// 로그인 성공시 해야할 로직(ex -> 정보갖고오기)
+				.successHandler(successHandle) 				// 로그인 성공시 해야할 로직(ex -> 정보갖고오기)
 				.and()
 			.logout()
 				.logoutUrl("/member/logout") 		// Spring이 처리하는 logout url
@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf() 	// csrf 허용하기.
 				.disable();
 		
+		//System.out.println(successHandle);
 		
 	}
 	
