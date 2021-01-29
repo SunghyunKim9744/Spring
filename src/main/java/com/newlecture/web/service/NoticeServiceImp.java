@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
@@ -171,7 +173,8 @@ public class NoticeServiceImp implements NoticeService{
 		return noticeDao.deleteAll(ids);
 	}
 	
-	
+	//커밋되지 않아도 그냥 읽겠다.
+	//@Transactional(isolation = Isolation.READ_UNCOMMITTED)
 	public Notice get(int id) {
 
 		return noticeDao.get(id);
@@ -232,5 +235,16 @@ public class NoticeServiceImp implements NoticeService{
 	public Notice getNext(int id) {
 		// TODO Auto-generated method stub
 		return noticeDao.getNext(id);
+	}
+	
+	// 트랜잭션 처리
+	@Transactional
+	@Override
+	public void atom() {
+		Notice notice = new Notice("보이지마라 트랙잭션","newlec","깨졌네 ㅠ");
+		noticeDao.insert(notice);
+		
+		notice.setWriterId("없는사람임");
+		noticeDao.insert(notice);
 	}
 }

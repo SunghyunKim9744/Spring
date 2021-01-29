@@ -24,4 +24,5 @@ public interface NoticeService {
    Notice getPrev(int id);
    
    Notice getNext(int id);
+   void atom();
 }
