@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import com.newlecture.web.service.NoticeService;
 @RequestMapping("/customer/notice/")
 public class NoticeController {
 
-	@Autowired
+	//@Autowired
 	private NoticeService service;
 
 	@GetMapping("isol")
@@ -38,6 +39,11 @@ public class NoticeController {
 		return null;
 
 	}
+	
+//	@ExceptionHandler(Exception.class)
+//	public String error(Exception e) {
+//		return "error";
+//	}
 
 	@RequestMapping("list")
 	public String list(
@@ -51,6 +57,7 @@ public class NoticeController {
 			@RequestParam(name = "f", required = false) String field,
 			@RequestParam(value = "q", required = false) String query, Model model) {
 
+		
 		// System.out.println(page);
 //		NoticeService noticeService = new NoticeService();
 		int size = 10;
